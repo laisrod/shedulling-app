@@ -1,14 +1,33 @@
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark navbarScroll">
+<div class="container">
+    <a class="navbar-brand" href="#">BOX</a>
+    <button class="navbar-toggler" id="button" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item active">
+            <%= link_to "Novo agendamento", new_schedule_path %>
+            </li>
+            <li class="nav-item">
+            <%=link_to "logout", destroy_user_session_path, method: :delete  %>
+            </li>
+        </ul>
+        
+    </div>
+</div>
+</nav>
+
+
 <p style="color: green"><%= notice %></p>
 
-<h1>Schedules</h1>
+<h1>Agendamentos - Box</h1>
 
 <div id="schedules">
   <% @schedules.each do |schedule| %>
     <%= render schedule %>
     <p>
-      <%= link_to "Show this schedule", schedule %>
+      <%= link_to "Mostrar a programação", schedule %>
     </p>
   <% end %>
 </div>
-
-<%= link_to "New schedule", new_schedule_path %>

@@ -5,7 +5,8 @@ class CreateSchedules < ActiveRecord::Migration[7.0]
       t.date :date
       t.string :local
       t.time :time
-
+      t.string :teacher
+      
       t.timestamps
     end
   end

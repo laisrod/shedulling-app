@@ -1,9 +1,11 @@
 class SchedulesController < ApplicationController
   before_action :set_schedule, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /schedules or /schedules.json
   def index
     @schedules = Schedule.all
+    puts 'Hello, current_user'
   end
 
   # GET /schedules/1 or /schedules/1.json
@@ -25,7 +27,7 @@ class SchedulesController < ApplicationController
 
     respond_to do |format|
       if @schedule.save
-        format.html { redirect_to schedule_url(@schedule), notice: "Schedule was successfully created." }
+        format.html { redirect_to schedule_url(@schedule), notice: "Agendamento criado com sucesso!" }
         format.json { render :show, status: :created, location: @schedule }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +40,7 @@ class SchedulesController < ApplicationController
   def update
     respond_to do |format|
       if @schedule.update(schedule_params)
-        format.html { redirect_to schedule_url(@schedule), notice: "Schedule was successfully updated." }
+        format.html { redirect_to schedule_url(@schedule), notice: "Agendamento atualizado com sucesso!" }
         format.json { render :show, status: :ok, location: @schedule }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +54,7 @@ class SchedulesController < ApplicationController
     @schedule.destroy
 
     respond_to do |format|
-      format.html { redirect_to schedules_url, notice: "Schedule was successfully destroyed." }
+      format.html { redirect_to schedules_url, notice: "Agendamento deletado com sucesso." }
       format.json { head :no_content }
     end
   end
@@ -65,6 +67,6 @@ class SchedulesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def schedule_params
-      params.require(:schedule).permit(:name, :date, :local, :time)
+      params.require(:schedule).permit(:name, :date, :local, :time, :teacher)
     end
 end
